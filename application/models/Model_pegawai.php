@@ -83,9 +83,15 @@ class Model_pegawai extends CI_Model
 
     public function delete($id)
     {
-        $this->_deleteImage($id);
-        $this->db->where_in('id_user', $id);
-        $this->db->delete($this->tabel);
+        if ($this->_deleteImage($id)) {
+            $this->db->where_in('id_user', $id);
+            $this->db->delete($this->tabel);
+            if ($id == $this->session->userdata('user_id')) {
+                redirect("user/logout");
+            }
+        } else {
+            $this->session->set_flashdata('flash-danger', 'Tidak Dihapus !!');
+        }
     }
 
     private function _deleteImage($id)

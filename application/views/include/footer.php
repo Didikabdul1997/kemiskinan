@@ -1,7 +1,7 @@
-<footer class="main-footer">
-  <strong>Copyright &copy; 2019 Teknik Informatika.</strong>
-  All rights reserved.
-  <div class="float-right d-none d-sm-inline-block">
-    <b>UNUGIRI Bojonegoro</b>
+<footer class="sticky-footer bg-white">
+  <div class="container my-auto">
+    <div class="copyright text-center my-auto">
+      <span>Copyright &copy; Teknik Informatika UNUGIRI Bojonegoro 2020</span>
+    </div>
   </div>
 </footer>

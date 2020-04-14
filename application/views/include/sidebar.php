@@ -1,96 +1,85 @@
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Brand Logo -->
-    <a href="<?= base_url(); ?>home" class="brand-link">
-        <img src="<?= base_url(); ?>assets/images/forecasting.jpg" alt="AdminLTE Logo" class="brand-image elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light"><b>FORECASTING</b> </span>
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+    <!-- Sidebar - Brand -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= base_url(); ?>home">
+        <div class="sidebar-brand-icon rotate-n-15">
+            <i class="fas fa-chart-line"></i>
+        </div>
+        <div class="sidebar-brand-text mx-3">SIP<sub style="font-size: 12px">era</sub>K</div>
     </a>
 
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <!-- Sidebar user panel (optional) -->
-        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-            <div class="image">
-                <?php
-                if ($user['foto'] != null) {
-                    $foto = $user['foto'];
-                } else {
-                    $foto = "images.jpeg";
-                }
-                ?>
-                <img src="<?= base_url(); ?>assets/uploads/foto/<?= $foto; ?>" class="img-circle elevation-2" alt="User Image">
-            </div>
-            <div class="info">
-                <a href="#" class="d-block"><?= $user['nama']; ?></a>
-            </div>
-        </div>
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0">
 
-        <!-- Sidebar Menu -->
-        <nav class="mt-2">
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item  <?php if ($active == "dashboard") {
+                                echo "active";
+                            } ?>">
+        <a class="nav-link" href="<?= base_url(); ?>home">
+            <i class="fas fa-home"></i>
+            <span>Home</span></a>
+    </li>
 
-                <li class="nav-item">
-                    <a href="<?= base_url(); ?>home" class="nav-link <?php if ($active == "dashboard") {
-                                                                            echo "active";
-                                                                        } ?>">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            Dashboard
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="<?= base_url(); ?>kemiskinan" class="nav-link <?php if ($active == "kemiskinan") {
-                                                                                echo "active";
-                                                                            } ?>">
-                        <i class="nav-icon fas fa-atlas"></i>
-                        <p>
-                            Kemiskinan
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="<?= base_url(); ?>forecasting" class="nav-link <?php if ($active == "forecasting") {
-                                                                                echo "active";
-                                                                            } ?>">
-                        <i class="nav-icon fas fa-chart-line"></i>
-                        <p>
-                            Forecasting
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="<?= base_url(); ?>pegawai" class="nav-link <?php if ($active == "pegawai") {
-                                                                            echo "active";
-                                                                        } ?>">
-                        <i class="nav-icon far fa-address-card"></i>
-                        <p>
-                            User Account
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="<?= base_url(); ?>user/profil" class="nav-link <?php if ($active == "profil") {
-                                                                                echo "active";
-                                                                            } ?>">
-                        <i class="nav-icon far fa-user"></i>
-                        <p>
-                            Profil
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="<?= base_url(); ?>user/logout" class="nav-link">
-                        <i class="nav-icon fas fa-sign-out-alt"></i>
-                        <p>
-                            Logout
-                        </p>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-        <!-- /.sidebar-menu -->
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Peramalan
     </div>
-    <!-- /.sidebar -->
-</aside>
+
+    <li class="nav-item <?php if ($active == "aktual") {
+                            echo "active";
+                        } ?>">
+        <a class="nav-link" href="<?= base_url(); ?>aktual">
+            <i class="fas fa-align-left"></i>
+            <span>Actual</span></a>
+    </li>
+
+    <li class="nav-item <?php if ($active == "forecasting") {
+                            echo "active";
+                        } ?>">
+        <a class="nav-link" href="<?= base_url(); ?>forecasting">
+            <i class="fas fa-chart-bar"></i>
+            <span>Forecast</span></a>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Sistem
+    </div>
+
+    <li class="nav-item <?php if ($active == "akun") {
+                            echo "active";
+                        } ?>">
+        <a class="nav-link" href="<?= base_url(); ?>akun">
+            <i class="fas fa-user-friends"></i>
+            <span>User Account</span></a>
+    </li>
+
+    <li class="nav-item <?php if ($active == "profil") {
+                            echo "active";
+                        } ?>">
+        <a class="nav-link" href="<?= base_url(); ?>user/profil">
+            <i class="fas fa-user-cog"></i>
+            <span>Profil</span></a>
+    </li>
+
+
+    <li class="nav-item">
+        <a class="nav-link" href="<?= base_url(); ?>user/logout">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Logout</span></a>
+    </li>
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
+
+    <!-- Sidebar Toggler (Sidebar) -->
+    <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    </div>
+
+</ul>

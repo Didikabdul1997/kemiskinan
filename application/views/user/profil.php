@@ -35,7 +35,7 @@
           <!-- form start -->
           <form action="<?= base_url(); ?>user/simpan" method="post" enctype="multipart/form-data">
             <div class="card-body">
-              <input type="hidden" name="id_pegawai" value="<?= $this->session->userdata('user_id'); ?>">
+              <input type="hidden" name="id_user" value="<?= $this->session->userdata('user_id'); ?>">
               <div class="form-group">
                 <label for="nama">Nama Lengkap</label>
                 <input name="nama" value="<?= $data['nama']; ?>" type="text" class="form-control" required id="nama" placeholder="Masukkan Nama...">
