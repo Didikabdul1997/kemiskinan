@@ -27,22 +27,25 @@
     <div class="sidebar-heading">
         Peramalan
     </div>
+    <?php if ($_SESSION['jabatan'] == 1 || $_SESSION['jabatan'] == 3) : ?>
+        <li class="nav-item <?php if ($active == "aktual") {
+                                echo "active";
+                            } ?>">
+            <a class="nav-link" href="<?= base_url(); ?>aktual">
+                <i class="fas fa-align-left"></i>
+                <span>Actual</span></a>
+        </li>
+    <?php endif; ?>
 
-    <li class="nav-item <?php if ($active == "aktual") {
-                            echo "active";
-                        } ?>">
-        <a class="nav-link" href="<?= base_url(); ?>aktual">
-            <i class="fas fa-align-left"></i>
-            <span>Actual</span></a>
-    </li>
-
-    <li class="nav-item <?php if ($active == "forecasting") {
-                            echo "active";
-                        } ?>">
-        <a class="nav-link" href="<?= base_url(); ?>forecasting">
-            <i class="fas fa-chart-bar"></i>
-            <span>Forecast</span></a>
-    </li>
+    <?php if ($_SESSION['jabatan'] == 1 || $_SESSION['jabatan'] == 2) : ?>
+        <li class="nav-item <?php if ($active == "forecasting") {
+                                echo "active";
+                            } ?>">
+            <a class="nav-link" href="<?= base_url(); ?>forecasting">
+                <i class="fas fa-chart-bar"></i>
+                <span>Forecast</span></a>
+        </li>
+    <?php endif; ?>
 
     <!-- Divider -->
     <hr class="sidebar-divider">
@@ -52,13 +55,15 @@
         Sistem
     </div>
 
-    <li class="nav-item <?php if ($active == "akun") {
-                            echo "active";
-                        } ?>">
-        <a class="nav-link" href="<?= base_url(); ?>akun">
-            <i class="fas fa-user-friends"></i>
-            <span>User Account</span></a>
-    </li>
+    <?php if ($_SESSION['jabatan'] == 1) : ?>
+        <li class="nav-item <?php if ($active == "akun") {
+                                echo "active";
+                            } ?>">
+            <a class="nav-link" href="<?= base_url(); ?>akun">
+                <i class="fas fa-user-friends"></i>
+                <span>User Account</span></a>
+        </li>
+    <?php endif; ?>
 
     <li class="nav-item <?php if ($active == "profil") {
                             echo "active";

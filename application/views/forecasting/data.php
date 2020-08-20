@@ -5,101 +5,46 @@
                 <div class="card-header py-3">
                     <div class="row">
                         <div class="col-md-6">
-                            <h4 class="m-0 font-weight-bold text-primary">Tabel Kemiskinan</h4>
-                        </div>
-                        <div class="col-md-6 text-right">
-                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalLong">
-                                <span class="nav-icon fas fa-plus"></span> <b>Tambah</b>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <!-- Modal Edit -->
-                        <div class="modal fade" id="edit-data" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                            <div class="modal-dialog modal-lg" role="document">
-                                <form action="<?= base_url(); ?>aktual/simpan" method="post" enctype="multipart/form-data">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLongTitle">Input Data Kemiskinan</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <!-- form start -->
-                                            <input type="hidden" id="ubah_id_kemiskinan" name="id_peminjaman">
-                                            <div class="form-group">
-                                                <label for="tahun">Tahun</label>
-                                                <input name="tahun" type="text" id="ubah_tahun" class="form-control" required id="tahun" placeholder="Tahun" value="">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Bulan</label>
-                                                <select name="semester" id="ubah_semester" class="form-control select2bs4" required style="width: 100%;">
-                                                    <option value="1">Maret</option>
-                                                    <option value="2">September</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="jumlah">Jumlah</label>
-                                                <input name="jumlah" id="ubah_jumlah" type="text" class="form-control" required id="jumlah" placeholder="Jumlah">
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <input type="submit" class="btn btn-success" name="submit" value="Simpan">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
+                            <h4 class="m-0 font-weight-bold text-primary">Peramalan Kemiskinan</h4>
                         </div>
                     </div>
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                            <thead>
-                                <tr>
-                                    <th width="70">No</th>
-                                    <th>Tahun</th>
-                                    <th>Bulan</th>
-                                    <th>Jumlah</th>
-                                    <th width="200">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php $i = 1; ?>
-                                <?php foreach ($list_kemiskinan as $dat) : ?>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <input name="periode" type="text" class="form-control" required id="periode" placeholder="Periode">
+                        </div>
+                        <div class="col-md-2">
+                            <input name="tahunakhir" type="text" class="form-control" required id="tahunakhir" placeholder="Tahun Akhir">
+                        </div>
+                        <div class="col-md-6">
+                            <button type="button" class="btn btn-success" id="proses">
+                                <span class="nav-icon fas fa-chart-area"></span> <b>Process</b>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row col-md-7 mt-3" id="hasil">
+
+                    </div>
+                    <div class="row col mt-3">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="forecast_table" width="100%" cellspacing="0">
+                                <thead>
                                     <tr>
-                                        <td><?= $i; ?></td>
-                                        <td><?= $dat['tahun']; ?></td>
-                                        <td><?php
-                                            if ($dat['semester'] == '1') {
-                                                echo "Maret";
-                                            } else {
-                                                echo "September";
-                                            }
-                                            ?></td>
-                                        <td><?= $dat['jumlah']; ?></td>
-                                        <td>
-                                            <a class="btn btn-sm btn-warning btn-icon-split" style="color: white;" data-toggle="modal" data-target="#edit-data" onclick="select_data('<?= $dat['id_kemiskinan']; ?>','<?= $dat['tahun']; ?>','<?= $dat['semester']; ?>','<?= $dat['jumlah']; ?>');">
-                                                <span class="icon text-white-55">
-                                                    <i class="fas fa-edit"></i>
-                                                </span>
-                                                <span class="text">Edit</span>
-                                            </a>
-                                            <a href="<?= base_url(); ?>aktual/hapus/<?= $dat['id_kemiskinan']; ?>" class="btn btn-sm btn-danger btn-icon-split tombol-hapus">
-                                                <span class="icon text-white-55">
-                                                    <i class="fas fa-trash"></i>
-                                                </span>
-                                                <span class="text">Hapus</span>
-                                            </a>
-                                        </td>
+                                        <th width="70">No</th>
+                                        <th>Tahun</th>
+                                        <th>Bulan</th>
+                                        <th>Jumlah</th>
+                                        <th>Forecast</th>
+                                        <th>E</th>
+                                        <th>E^2</th>
+                                        <th>APE</th>
                                     </tr>
-                                <?php $i++;
-                                endforeach ?>
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody id="show_data">
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -109,49 +54,122 @@
     </div>
     <!-- /.row -->
 </section>
-<!-- Modal Tambah -->
-<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <form action="<?= base_url(); ?>aktual/simpan" method="post" enctype="multipart/form-data">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Input Data Kemiskinan</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <!-- form start -->
-                    <div class="form-group">
-                        <label for="tahun">Tahun</label>
-                        <input name="tahun" type="text" class="form-control" required id="tahun" placeholder="Tahun" value="">
-                    </div>
-                    <div class="form-group">
-                        <label>Bulan</label>
-                        <select name="semester" class="form-control select2bs4" required style="width: 100%;">
-                            <option value="1">Maret</option>
-                            <option value="2">September</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="jumlah">Jumlah</label>
-                        <input name="jumlah" type="text" class="form-control" required id="jumlah" placeholder="Jumlah">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <input type="submit" class="btn btn-success" name="submit" value="Simpan">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
 <script type="text/javascript">
-    function select_data($id, $tahun, $semester, $jumlah) {
-        $('#ubah_id_kemiskinan').val($id);
-        $('#ubah_tahun').val($tahun);
-        $('#ubah_semester').val($semester);
-        $('#ubah_jumlah').val($jumlah);
+    $(document).ready(function() {
+        $('#forecast_table').dataTable();
+        tabel_forecast();
+    });
+
+    $('#proses').on('click', function() {
+        tabel_forecast();
+    });
+
+    function load_hasil() {
+        var periode = $("#periode").val();
+        var tahunakhir = $("#tahunakhir").val();
+        $.ajax({
+            type: 'POST',
+            url: '<?= base_url() ?>forecasting/get_hasil',
+            async: true,
+            data: {
+                periode: periode,
+                tahunakhir: tahunakhir
+            },
+            dataType: 'json',
+            success: function(data) {
+                $('#periode').val(data.periode);
+                $('#tahunakhir').val(data.tahunakhir);
+                var html = `
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Hasil</th>
+                                        <th></th>
+                                        <th>Jumlah</th>
+                                        <th>Keterangan</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>SSE</td>
+                                        <td>:</td>
+                                        <td>` + data.sse + `</td>
+                                        <td>(Sum Squared Error)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>MSE</td>
+                                        <td>:</td>
+                                        <td>` + data.mse + `</td>
+                                        <td>(Mean Squared Error)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>RMSE</td>
+                                        <td>:</td>
+                                        <td>` + data.rmse + `</td>
+                                        <td>(Root Mean Squared Error)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>MAPE</td>
+                                        <td>:</td>
+                                        <td>` + data.mape + ` %</td>
+                                        <td>(Mean Absolute Percentage Error)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    `;
+                $('#hasil').html(html);
+            }
+        });
+    }
+
+    // Load table
+    function tabel_forecast() {
+        $('#forecast_table').DataTable().clear().destroy();
+        $('#hasil').html('');
+        var periode = $("#periode").val();
+        var tahunakhir = $("#tahunakhir").val();
+        $.ajax({
+            type: 'POST',
+            url: '<?= base_url() ?>forecasting/get_tb_forecast',
+            async: true,
+            data: {
+                periode: periode,
+                tahunakhir: tahunakhir
+            },
+            dataType: 'json',
+            success: function(data) {
+                var html = '';
+                var i;
+                for (i = 0; i < data.length; i++) {
+                    if (data[i].semester == 1) {
+                        semester = "Maret";
+                    } else {
+                        semester = "September";
+                    }
+                    if (data[i].ape != null) {
+                        ape = data[i].ape + " %";
+                    } else {
+                        ape = data[i].ape;
+                    }
+                    html += '<tr>' +
+                        '<td class="text-center">' + (i + 1) + '</td>' +
+                        '<td>' + data[i].tahun + '</td>' +
+                        '<td>' + semester + '</td>' +
+                        '<td>' + data[i].jumlah + '</td>' +
+                        '<td>' + data[i].forecast + '</td>' +
+                        '<td>' + data[i].e + '</td>' +
+                        '<td>' + data[i].e2 + '</td>' +
+                        '<td>' + ape + '</td>' +
+                        '</td>' +
+                        '</tr>';
+                }
+                $('#show_data').html(html);
+                $('#forecast_table').dataTable();
+                load_hasil();
+            }
+        });
     }
 </script>
 

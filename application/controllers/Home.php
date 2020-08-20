@@ -19,13 +19,9 @@ class Home extends CI_Controller
 	public function index()
 	{
 		$this->_get_commond_data($data);
-		$data['peminjaman']	= $this->home->jml_peminjaman();
-		$data['anggota']	= $this->home->jml_anggota();
-		$data['pegawai']	= $this->home->jml_pegawai();
-		$data['buku']	= $this->home->jml_buku();
-		$data['kemiskinan']	= $this->home->list_kemiskinan();
-		$data['maret']	= $this->home->list_kemiskinan_maret();
-		$data['september']	= $this->home->list_kemiskinan_september();
+		$this->load->model('Model_kemiskinan', 'kemiskinan');
+		$data['grafik'] = $this->kemiskinan->get_grafik();
+		$data['dashboard'] = $this->kemiskinan->data_dashboard();
 		$data['judul']	= "Dashboard";
 		$data['active']	= "dashboard";
 		$data['pages']	= "home";

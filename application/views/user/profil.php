@@ -17,8 +17,16 @@
             </div>
 
             <h3 class="profile-username text-center"><?= $user['nama']; ?></h3>
-
-            <p class="text-muted text-center"><b>Jabatan :</b> <?= $user['jabatan']; ?></p>
+            <?php
+            if ($user['jabatan'] == 1) {
+              $jab = "Administrator";
+            } else if ($user['jabatan'] == 2) {
+              $jab = "Kepala";
+            } else {
+              $jab = "Pegawai";
+            }
+            ?>
+            <p class="text-muted text-center"><b>Jabatan :</b> <?= $jab; ?></p>
           </div>
           <!-- /.card-body -->
         </div>
@@ -42,7 +50,7 @@
               </div>
               <div class="form-group">
                 <label for="jabatan">Jabatan</label>
-                <?php if ($user['jabatan'] == "Kepala" or $user['jabatan'] == "Operator") {
+                <?php if ($user['jabatan'] == 1) {
                   $jab = "";
                 } else {
                   $jab = "disabled";
@@ -50,7 +58,14 @@
                   <input type="hidden" name="jabatan" value="<?= $data['jabatan']; ?>">
                 <?php
                 } ?>
-                <input name="jabatan" <?= $jab; ?> value="<?= $data['jabatan']; ?>" type="text" class="form-control" required id="jabatan" placeholder="Jabatan...">
+                <select class="form-control" name="jabatan" <?= $jab; ?> id="ubah_jabatan">
+                  <option value="3" <?php if ($data['jabatan'] == 3) : echo "selected";
+                                    endif; ?>>Pegawai</option>
+                  <option value="2" <?php if ($data['jabatan'] == 2) : echo "selected";
+                                    endif; ?>>Kepala</option>
+                  <option value="1" <?php if ($data['jabatan'] == 1) : echo "selected";
+                                    endif; ?>>Administrator</option>
+                </select>
               </div>
               <div class="form-group">
                 <label for="jk">Jenis Kelamin</label>

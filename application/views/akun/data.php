@@ -8,7 +8,7 @@
                             <h3 class="text-primary">Tabel Akun</h3>
                         </div>
                         <div class="col-md-2 text-right">
-                            <?php if ($user['jabatan'] == "Kepala" or $user['jabatan'] == "Operator") : ?>
+                            <?php if ($user['jabatan'] == 1) : ?>
                                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-tambah">
                                     <span class="nav-icon fas fa-plus"></span> <b>Tambah</b>
                                 </button>
@@ -26,12 +26,12 @@
                                     Foto
                                 </th>
                                 <th>Nama</th>
-                                <th>Jenis Kelamin</th>
                                 <th>Jabatan</th>
+                                <th>Jenis Kelamin</th>
                                 <th>Tempat, Tanggal Lahir</th>
                                 <th>Alamat</th>
                                 <th>Username</th>
-                                <?php if ($user['jabatan'] == "Kepala" or $user['jabatan'] == "Operator") : ?>
+                                <?php if ($user['jabatan'] == 1) : ?>
                                     <th width="100">Action</th>
                                 <?php endif ?>
                             </tr>
@@ -50,16 +50,23 @@
                                         <img src="<?= base_url() . 'assets/uploads/foto/' . $foto; ?>" alt="Image Not Found" class="img-circle" width="50" height="auto">
                                     </td>
                                     <td><?= $dat['nama']; ?></td>
-                                    <td><?= $dat['jabatan']; ?></td>
+                                    <td><?php if ($dat['jabatan'] == 1) {
+                                            echo "Administrator";
+                                        } else if ($dat['jabatan'] == 2) {
+                                            echo "Kepala";
+                                        } else {
+                                            echo "Pegawai";
+                                        } ?></td>
                                     <td><?php if ($dat['jk'] == 1) {
                                             echo "Laki-laki";
                                         } else {
                                             echo "Perempuan";
-                                        }; ?></td>
+                                        }; ?>
+                                    </td>
                                     <td><?= $dat['tempat_lahir']; ?>, <?= $dat['tanggal_lahir']; ?></td>
                                     <td><?= $dat['alamat']; ?></td>
                                     <td><?= $dat['username']; ?></td>
-                                    <?php if ($user['jabatan'] == "Kepala" or $user['jabatan'] == "Operator") : ?>
+                                    <?php if ($user['jabatan'] == 1) : ?>
                                         <td>
                                             <a class="btn btn-sm btn-warning btn-icon-split" style="color: white;" data-toggle="modal" data-target="#modal-edit" onclick="select_data('<?= $dat['id_user']; ?>','<?= $dat['nama']; ?>','<?= $dat['jabatan']; ?>','<?= $dat['jk']; ?>','<?= $dat['tempat_lahir']; ?>','<?= $dat['tanggal_lahir']; ?>','<?= $dat['alamat']; ?>','<?= $dat['username']; ?>','<?= $dat['password']; ?>');">
                                                 <span class="icon text-white-55">
@@ -115,7 +122,11 @@
                     </div>
                     <div class="form-group">
                         <label for="ubah_jabatan">Jabatan</label>
-                        <input name="jabatan" type="text" class="form-control" required id="ubah_jabatan" placeholder="Jabatan...">
+                        <select class="form-control" name="jabatan" id="ubah_jabatan">
+                            <option value="3">Pegawai</option>
+                            <option value="2">Kepala</option>
+                            <option value="1">Administrator</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="ubah_tempat_lahir">Tempat Lahir</label>
@@ -192,7 +203,11 @@
                     </div>
                     <div class="form-group">
                         <label for="jabatan">Jabatan</label>
-                        <input name="jabatan" type="text" class="form-control" required id="jabatan" placeholder="Jabatan...">
+                        <select class="form-control" name="jabatan" id="jabatan">
+                            <option value="3">Pegawai</option>
+                            <option value="2">Kepala</option>
+                            <option value="1">Administrator</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="tempat_lahir">Tempat Lahir</label>

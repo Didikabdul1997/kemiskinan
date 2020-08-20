@@ -77,7 +77,8 @@ class User extends CI_Controller
             $user_data = array(
                 'user_id'     => $user_data['id_user'],
                 'username'    => $username,
-                'logged_in'    => true
+                'logged_in'    => true,
+                'jabatan'     => $user_data['jabatan']
             );
 
             $this->session->set_userdata($user_data);

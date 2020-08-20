@@ -105,15 +105,21 @@ class Model_pegawai extends CI_Model
     // Fungsi untuk melakukan proses upload file
     public function upload()
     {
+        $user = $this->data($_POST['id_user']);
         $config['upload_path'] = './assets/uploads/foto/';
         $config['allowed_types'] = 'jpg|png|jpeg';
         // $config['overwrite']     = true;
         $config['max_size']    = '2048';
         $config['remove_space'] = TRUE;
+        $config['encrypt_name'] = TRUE;
 
         $this->load->library('upload', $config); // Load konfigurasi uploadnya
         if ($this->upload->do_upload('foto')) { // Lakukan upload dan Cek jika proses upload berhasil
             // Jika berhasil :
+            $old_image =  $user['foto'];
+            if ($old_image != "default.jpg") {
+                unlink(FCPATH . 'assets/uploads/foto/' . $old_image);
+            }
             $return = array('result' => 'success', 'file' => $this->upload->data(), 'error' => '');
             return $return;
         } else {
