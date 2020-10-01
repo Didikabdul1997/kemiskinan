@@ -36,8 +36,8 @@ class Aktual extends CI_Controller
 
     public function simpan()
     {
-        if (!empty($_POST['id_kemiskinan'])) {
-            $id = $_POST['id_kemiskinan'];
+        if (!empty($_POST['ubah_id_kemiskinan'])) {
+            $id = $_POST['ubah_id_kemiskinan'];
             $this->kemiskinan->update($id);
             $this->session->set_flashdata('flash-success', 'Data berhasil disimpan !!');
         } else {

@@ -118,7 +118,7 @@
                 </div>
                 <div class="modal-body">
                     <!-- form start -->
-                    <input type="hidden" id="ubah_id_kemiskinan" name="id_peminjaman">
+                    <input type="hidden" id="ubah_id_kemiskinan" name="ubah_id_kemiskinan">
                     <div class="form-group">
                         <label for="tahun">Tahun</label>
                         <input name="tahun" type="text" id="ubah_tahun" class="form-control" required id="tahun" placeholder="Tahun" value="">
