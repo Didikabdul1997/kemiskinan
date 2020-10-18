@@ -73,6 +73,13 @@
             <span>Profil</span></a>
     </li>
 
+    <li class="nav-item <?php if ($active == "info") {
+                            echo "active";
+                        } ?>">
+        <a class="nav-link" href="<?= base_url(); ?>user/info">
+            <i class="fas fa-info-circle"></i>
+            <span>Panduan</span></a>
+    </li>
 
     <li class="nav-item">
         <a class="nav-link" href="<?= base_url(); ?>user/logout">

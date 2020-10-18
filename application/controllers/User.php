@@ -25,6 +25,16 @@ class User extends CI_Controller
         $this->load->view('template', $data);
     }
 
+    public function info()
+    {
+        $this->_get_commond_data($data);
+        $data['data']    = $this->user->data_user($this->session->userdata('user_id'));
+        $data['judul']    = "Info Panduan";
+        $data['active']    = "info";
+        $data['pages']  = "user/info";
+        $this->load->view('template', $data);
+    }
+
     public function simpan()
     {
         // $data = array();
@@ -83,11 +93,11 @@ class User extends CI_Controller
 
             $this->session->set_userdata($user_data);
             // Set message
-            $this->session->set_flashdata('flash-success', 'You ara now logged in');
+            $this->session->set_flashdata('flash-success', 'Anda Sudah Login');
             redirect('home');
         } else {
             // Set message
-            $this->session->set_flashdata('flash-danger', 'Login is invalid');
+            $this->session->set_flashdata('flash-danger', 'Login Tidak Valid !!');
             redirect('user/login');
         }
     }
@@ -99,7 +109,7 @@ class User extends CI_Controller
         $this->session->unset_userdata('user_id');
         $this->session->unset_userdata('username');
         // Set message
-        $this->session->set_flashdata('flash-warning', 'You ara now logged out');
+        $this->session->set_flashdata('flash-warning', 'Anda Sudah Logout !!');
         redirect('user/login');
     }
 
